@@ -37,9 +37,10 @@ class Movie extends Production {
   // metodo per stampare le informazioni specifiche per il film
   public function printInfo() {
     $commonInfo = parent::printInfo();
-    echo $commonInfo;
-    echo "<br>" . "Anno di pubblicazione: " . $this->published_year . "<br>";
-    echo "Durata film: " . $this->running_time . " minuti<br>";
+    return $commonInfo . "<br>" . "Anno di pubblicazione: " . $this->published_year . "<br>" . "Durata film: " . $this->running_time . " minuti<br>";
+    // echo $commonInfo;
+    // echo "<br>" . "Anno di pubblicazione: " . $this->published_year . "<br>";
+    // echo "Durata film: " . $this->running_time . " minuti<br>";
   }
 }
 
@@ -63,11 +64,12 @@ class TvSerie extends Production {
   // metodo per stampare le informazioni specifiche per la serie TV
   public function printInfo() {
     $commonInfo = parent::printInfo();
-    echo $commonInfo;
-    echo "<br>" . "Anno di messa in onda del primo episodio: " . $this->aired_from_year . "<br>";
-    echo "Anno di messa in onda dell'ultimo episodio: " . $this->aired_to_year . "<br>";
-    echo "Numero di Episodi: " . $this->number_of_episodes . "<br>";
-    echo "Numero di Stagioni: " . $this->number_of_seasons . "<br>";
+    return $commonInfo . "<br>" . "Anno di messa in onda del primo episodio: " . $this->aired_from_year . "<br>" . "Anno di messa in onda dell'ultimo episodio: " . $this->aired_to_year . "<br>" . "Numero di Episodi: " . $this->number_of_episodes . "<br>" . "Numero di Stagioni: " . $this->number_of_seasons . "<br>";
+    // echo $commonInfo;
+    // echo "<br>" . "Anno di messa in onda del primo episodio: " . $this->aired_from_year . "<br>";
+    // echo "Anno di messa in onda dell'ultimo episodio: " . $this->aired_to_year . "<br>";
+    // echo "Numero di Episodi: " . $this->number_of_episodes . "<br>";
+    // echo "Numero di Stagioni: " . $this->number_of_seasons . "<br>";
   }
 }
 
@@ -82,16 +84,60 @@ $tvSerie2 = new TvSerie("Mindhunter", "David Fincher", "Thriller/Drama", 2017, 2
 $tvSerie3 = new TvSerie("The Office", "Greg Daniels", "Sitcom/Falso Documentario", 2005, 2013, 204, 9);
 
 // stampo a schermo i valori di film e serie tv
-echo $movie1->printInfo();
-echo "<br><br>";
-echo $movie2->printInfo();
-echo "<br><br>";
-echo $movie3->printInfo();
-echo "<br><br>";
-echo $tvSerie1->printInfo();
-echo "<br><br>";
-echo $tvSerie2->printInfo();
-echo "<br><br>";
-echo $tvSerie3->printInfo();
+// echo $movie1->printInfo();
+// echo "<br><br>";
+// echo $movie2->printInfo();
+// echo "<br><br>";
+// echo $movie3->printInfo();
+// echo "<br><br>";
+// echo $tvSerie1->printInfo();
+// echo "<br><br>";
+// echo $tvSerie2->printInfo();
+// echo "<br><br>";
+// echo $tvSerie3->printInfo();
+
+// array vuoto per pushare gli oggetti Movie e TvSerie
+$productions = [];
+
+// push degli oggetti nell'array
+$productions[] = $movie1;
+$productions[] = $movie2;
+$productions[] = $movie3;
+$productions[] = $tvSerie1;
+$productions[] = $tvSerie2;
+$productions[] = $tvSerie3;
+
 
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <title>Php Oop 1</title>
+</head>
+<body>
+
+  <div class="container my-5">
+    <div class="row">
+      
+      <?php foreach ($productions as $product): ?>
+        <div class="col-4 mb-3 ">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h4 class="card-title"><?php echo $product->title; ?></h4>
+              <p class="card-text"><?php echo $product->printInfo(); ?></p>
+            </div>
+          </div>
+        </div>
+      <?php endforeach; ?>
+
+    </div>
+  </div>
+  
+</body>
+</html>
